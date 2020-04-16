@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-04-16 Thu 23:52 -->
+<!-- 2020-04-17 Fri 00:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Considérations inactuelles</title>
+<title>Fun with Conway's Game of Life</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -192,7 +192,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="css/org.css"/>
+<link rel="stylesheet" type="text/css" href="../css/org.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -242,13 +242,63 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Considérations inactuelles
-<br />
-<span class="subtitle">Le blog d'Alfred Leung</span>
-</h1>
+<h1 class="title">Fun with Conway's Game of Life</h1>
+<div class="abstract">
+<p>
+<a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Conway</a> passed away last week, on April 11th, 2020. To laymen and computer enthusiasts, he is probably best remembered for inventing in 1970 a cellular automaton that could, from very simple rules, sometimes exhibit almost life-like patterns. What better way to celebrate his life than with the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>?<br />
+</p>
 
-<div id="outline-container-orga0be8e0" class="outline-2">
-<h2 id="orga0be8e0"><a href="articles/0001_conway_game_of_life.html">Fun with Conway's Game of Life</a> <span class="timestamp-wrapper"><span class="timestamp">[2020-04-16 Thu]</span></span></h2>
+</div>
+
+<style>
+  .img-xkcd {
+  text-align: center;
+  display:block;
+  }
+</style>
+<div class="img-xkcd">
+  <div>
+  <img src="https://imgs.xkcd.com/comics/rip_john_conway.gif">
+  </div>
+<div>
+<a href="https://xkcd.com/2293">
+  Obligatory xkcd
+</a>
+</div>
+</div>
+
+<div id="outline-container-org5833772" class="outline-2">
+<h2 id="org5833772">The Game</h2>
+<div class="outline-text-2" id="text-org5833772">
+<p>
+From the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia page</a>,<br />
+</p>
+<blockquote>
+<p>
+The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead, (or populated and unpopulated, respectively). Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:<br />
+</p>
+
+<ul class="org-ul">
+<li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.<br /></li>
+<li>Any live cell with two or three live neighbours lives on to the next generation.<br /></li>
+<li>Any live cell with more than three live neighbours dies, as if by overpopulation.<br /></li>
+<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.<br /></li>
+</ul>
+
+<p>
+These rules, which compare the behavior of the automaton to real life, can be condensed into the following:<br />
+</p>
+<ul class="org-ul">
+<li>Any live cell with two or three live neighbors survives.<br /></li>
+<li>Any dead cell with three live neighbors becomes a live cell.<br /></li>
+<li>All other live cells die in the next generation. Similarly, all other dead cells stay dead.<br /></li>
+</ul>
+
+<p>
+The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed; births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations.<br />
+</p>
+</blockquote>
+</div>
 </div>
 </div>
 </body>
