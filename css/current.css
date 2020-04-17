@@ -1,0 +1,228 @@
+html {
+  font-size: 62.5%;
+  font-family: serif;
+}
+
+body {
+  font-size: 1.8em;
+  line-height: 1.3;
+  max-width: 50em;
+  margin: auto;
+  color: #4a4a4a;
+  background-color: #f9f9f9;
+  padding: 13px;
+}
+
+@media (max-width: 684px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 382px) {
+  body {
+    font-size: 1.4rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: 500;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+h1 {
+  font-size: 2.25em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1.25em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+small,
+sub,
+sup {
+  font-size: 75%;
+}
+
+hr {
+  border-color: #2c8898;
+}
+
+a {
+  text-decoration: none;
+  color: #2c8898;
+}
+a:hover {
+  color: #982c61;
+  border-bottom: 2px solid #4a4a4a;
+}
+
+ul {
+  padding-left: 1.4em;
+}
+
+li {
+  margin-bottom: 0.4em;
+}
+
+blockquote {
+  font-style: italic;
+  margin-left: 1.5em;
+  padding-left: 1em;
+  border-left: 3px solid #2c8898;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Pre and Code */
+pre {
+  background-color: #f1f1f1;
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+code {
+  font-size: 0.9em;
+  padding: 0 0.5em;
+  background-color: #f1f1f1;
+  white-space: pre-wrap;
+}
+
+pre > code {
+  padding: 0;
+  background-color: transparent;
+  white-space: pre;
+}
+
+/* Tables */
+table {
+  text-align: justify;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.5em;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Classes */
+.title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.abstract {
+  margin: auto;
+  width: 80%;
+  font-style: italic;
+}
+
+/* Display toc in a right sidebar on wide screens */
+/* Taken from https://archive.casouri.cat/note/2018/blog-in-org-mode-revisited/index.html */
+/* @media screen and (min-width: 800px) { */
+/*   /\* floating TOC *\/ */
+/*   #table-of-contents { */
+/*     font-size: 12pt; */
+/*     bottom: 0; */
+/*     position: fixed; */
+/*     overflow-y: scroll; */
+/*     overflow-x: hidden; */
+/*     top: 5%; */
+/*     right: 2%; */
+/*     width: 20%; */
+/*   } */
+/*   /\* centered content *\/ */
+/*   body { */
+/*     margin-left: 5%; */
+/*     margin-right: 25%; */
+/*     /\* this way floating TOC wouldn't touch content *\/ */
+/*     /\* width: 58%; *\/ */
+/*   } */
+/*   /\* IDs *\/ */
+/*   #table-of-contents h2 { */
+/*     font-size: 1em; */
+/*   } */
+/* } */
+
+/* Taken from https://orgmode.org/worg/style/worg.css */
+/* TOC inspired by http://jashkenas.github.com/coffee-script */
+#table-of-contents {
+  margin-top: 0px;
+  font-size: 10pt;
+  position: fixed;
+  right: 0em;
+  top: 0em;
+  background: white;
+  line-height: 12pt;
+  text-align: right;
+  box-shadow: 0 0 1em #777777;
+  -webkit-box-shadow: 0 0 1em #777777;
+  -moz-box-shadow: 0 0 1em #777777;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* ensure doesn't flow off the screen when expanded */
+  max-height: 80%;
+  overflow: auto;
+}
+#table-of-contents h2 {
+  font-size: 13pt;
+  max-width: 9em;
+  border: 0;
+  font-weight: normal;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.05em;
+  padding-bottom: 0.05em;
+}
+#table-of-contents #text-table-of-contents {
+  display: none;
+  text-align: left;
+}
+#table-of-contents:hover #text-table-of-contents {
+  display: block;
+  padding: 0.5em;
+  margin-top: -1.5em;
+}
