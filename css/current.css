@@ -160,6 +160,24 @@ th {
   font-style: italic;
 }
 
+.tag {
+    font-family: $monospace;
+    font-size: 0.7em;
+    font-weight: normal;
+}
+
+.tag span {
+    padding: 0.3em 0.3em;
+    float: right;
+    margin-right: .5em;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    background-clip: padding-box;
+    color: #333;
+    background-color: #eee;
+    line-height: 1;
+}
+
 /* Display toc in a right sidebar on wide screens */
 /* Taken from https://archive.casouri.cat/note/2018/blog-in-org-mode-revisited/index.html */
 /* @media screen and (min-width: 800px) { */
