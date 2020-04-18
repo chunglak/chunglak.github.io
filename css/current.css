@@ -112,17 +112,17 @@ pre {
   background-color: #f1f1f1;
   display: block;
   padding: 1em;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 
-code {
+src {
   font-size: 0.9em;
   padding: 0 0.5em;
   background-color: #f1f1f1;
   white-space: pre-wrap;
 }
 
-pre > code {
+pre > src {
   padding: 0;
   background-color: transparent;
   white-space: pre;
@@ -242,15 +242,15 @@ th {
 /*   } */
 /* } */
 
-#content {
-    position: relative;
-}
+/* #content { */
+/*     position: relative; */
+/* } */
 
-#postamble {
-    position: absolute;
-    bottom: 5px;
-    width: 80%;
-}
+/* #postamble { */
+/*     position: absolute; */
+/*     bottom: 5px; */
+/*     width: 80%; */
+/* } */
 
 /* Taken from https://orgmode.org/worg/style/worg.css */
 /* TOC inspired by http://jashkenas.github.com/coffee-script */
