@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-04-18 Sat 20:35 -->
+<!-- Sun 19 April 2020 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fun with Conway's Game of Life</title>
 <meta name="generator" content="Org mode">
-<meta name="author" content="Alfred Leung - 梁宗力">
-<link rel="stylesheet" type="text/css" href="../css/site.css"/>
+<link rel="stylesheet" type="text/css" href="/css/site.css"/>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -57,52 +56,52 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="org-div-home-and-up">
- <a accesskey="h" href="../index.html"> UP </a>
+ <a accesskey="h" href="/index.html"> UP </a>
  |
- <a accesskey="H" href="../index.html"> HOME </a>
+ <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="preamble" class="status">
 <br/>
 </div>
 <div id="content">
 <header>
 <h1 class="title">Fun with Conway's Game of Life</h1>
-</header><div class="abstract">
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9bb677c">The Rules of the Game</a></li>
+<li><a href="#org4455b1a">The Code</a></li>
+</ul>
+</div>
+</nav>
+<p>
+<div id="page-date">Thu 16 April 2020</div><br>
+</p>
+
+<div class="abstract">
 <p>
 <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Conway</a> passed away last week, on April 11th, 2020. To laymen and computer enthusiasts, he is probably best remembered for inventing in 1970 a cellular automaton that could, from very simple rules, sometimes exhibit almost life-like patterns. What better way to celebrate his life than with the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>?<br>
 </p>
 
 </div>
 
-<style>
-  .img-xkcd {
-  text-align: center;
-  display:block;
-  }
-</style>
-<div class="img-xkcd">
+<div style="text-align:center">
   <div>
-  <img src="https://imgs.xkcd.com/comics/rip_john_conway.gif">
+    <img
+      style="width:200px"
+      src="https://imgs.xkcd.com/comics/rip_john_conway.gif"
+      >
   </div>
-<div>
-<a href="https://xkcd.com/2293">
-  Obligatory xkcd
-</a>
-</div>
+  <div>
+    <a href="https://xkcd.com/2293">
+      Obligatory xkcd
+    </a>
+  </div>
 </div>
 
-<nav id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org804f908">The Game</a></li>
-<li><a href="#org224d489">The Code</a></li>
-</ul>
-</div>
-</nav>
-
-<div id="outline-container-org804f908" class="outline-2">
-<h2 id="org804f908">The Game</h2>
-<div class="outline-text-2" id="text-org804f908">
+<div id="outline-container-org9bb677c" class="outline-2">
+<h2 id="org9bb677c">The Rules of the Game</h2>
+<div class="outline-text-2" id="text-org9bb677c">
 <p>
 From the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia page</a>,<br>
 </p>
@@ -134,9 +133,9 @@ The initial pattern constitutes the seed of the system. The first generation is 
 </div>
 </div>
 
-<div id="outline-container-org224d489" class="outline-2">
-<h2 id="org224d489">The Code</h2>
-<div class="outline-text-2" id="text-org224d489">
+<div id="outline-container-org4455b1a" class="outline-2">
+<h2 id="org4455b1a">The Code</h2>
+<div class="outline-text-2" id="text-org4455b1a">
 <div class="org-src-container">
 <pre class="src src-python">class Grid:
     def __init__(self, X, Y=None):
@@ -211,13 +210,10 @@ def step(grid):
 </div>
 <div id="postamble" class="status">
 <br/><br/><br/>
-  <div class='postamble'>
-  <span>The blog of Alfred Leung - 梁宗力</span>
-  <span style='float:right;'><a href="mailto:chunglak@gmail.com">chunglak@gmail.com</a></span>
-  <br>
-  <span>Updated 2020-04-18 Sat 17:34</span>
-  <span style='float:right;'><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.3.6)</span>
-  </div>
+<div class='postamble'>
+<span><a href='/index.html'>Considérations inactuelles</a> is the blog of <a href='mailto:chunglak@gmail.com'>Alfred Leung - 梁宗力</a></span>
+<br> <span>Updated on Sun 19 April 2020</span>
+</div>
 </div>
 </body>
 </html>

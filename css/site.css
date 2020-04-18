@@ -66,7 +66,7 @@ a {
   color: #2c8898; }
 
 a:hover {
-  color: #982c61;
+  color: darkblue;
   border-bottom: 2px solid #4a4a4a; }
 
 ul {
@@ -86,22 +86,64 @@ img {
   max-width: 100%; }
 
 /* Pre and Code */
-pre {
-  background-color: #f1f1f1;
+/* pre { */
+/*   background-color: #f1f1f1; */
+/*   display: block; */
+/*   padding: 1em; */
+/*   overflow-x: scroll; */
+/* } */
+/* src { */
+/*   font-size: 0.9em; */
+/*   padding: 0 0.5em; */
+/*   background-color: #f1f1f1; */
+/*   white-space: pre-wrap; */
+/* } */
+/* pre > src { */
+/*   padding: 0; */
+/*   background-color: transparent; */
+/*   white-space: pre; */
+/* } */
+.org-src-container {
+  border: 1px solid #ccc;
+  margin: 1em auto;
+  padding: 0.1em 0.5em;
+  position: relative;
+  background-color: linen; }
+
+.org-src-container > pre {
+  overflow: auto; }
+
+.org-src-container > pre:before {
   display: block;
-  padding: 1em;
-  overflow-x: scroll; }
-
-src {
-  font-size: 0.9em;
+  position: absolute;
+  background-color: #b3b3b3;
+  top: 0;
+  right: 0;
   padding: 0 0.5em;
-  background-color: #f1f1f1;
-  white-space: pre-wrap; }
+  border-bottom-left-radius: 8px;
+  border: 0;
+  color: white; }
 
-pre > src {
-  padding: 0;
-  background-color: transparent;
-  white-space: pre; }
+.org-src-container > pre.src-sh:before {
+  content: "sh"; }
+
+.org-src-container > pre.src-bash:before {
+  content: "bash"; }
+
+.org-src-container > pre.src-emacs-lisp:before {
+  content: "Emacs Lisp"; }
+
+.org-src-container > pre.src-python:before {
+  content: "Python"; }
+
+.org-src-container > pre.src-org:before {
+  content: "Org"; }
+
+.org-src-container > pre.src-js:before {
+  content: "Javascript"; }
+
+.org-src-container > pre.src-javascript:before {
+  content: "Javascript"; }
 
 /* Tables */
 table {
@@ -127,7 +169,14 @@ th {
 .postamble {
   font-size: 0.9em;
   font-style: italic;
-  color: dimgray; }
+  color: dimgray;
+  text-align: center; }
+
+/* ------------------------------ */
+/* Page date */
+/* ------------------------------ */
+#page-date {
+  text-align: center; }
 
 /* ------------------------------ */
 /* Timestamp */
@@ -172,7 +221,7 @@ th {
 .tooltip {
   position: relative;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: 400;
   font-style: italic; }
 
