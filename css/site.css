@@ -133,20 +133,18 @@ th {
 /* Timestamp */
 /* ------------------------------ */
 .timestamp {
+  font-size: 0.7em;
   font-family: monospace;
-  font-size: 0.6em;
-  font-weight: normal; }
-
-.timestamp span {
-  padding: 0.3em 0.3em;
+  font-weight: normal;
+  vertical-align: middle;
   float: right;
-  margin-right: 0.5em;
+  margin-left: 1em;
+  padding: 0.3em 0.3em;
   border: 1px solid #bbb;
-  border-radius: 3px;
+  border-radius: 6px;
   background-clip: padding-box;
   color: #333;
-  background-color: #eee;
-  line-height: 1; }
+  background-color: #eee; }
 
 /* ------------------------------ */
 /* Tags */
