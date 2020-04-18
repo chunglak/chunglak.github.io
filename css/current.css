@@ -151,7 +151,8 @@ th {
 .subtitle {
   text-align: center;
   font-size: 1.5em;
-  font-weight: 600;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .abstract {
@@ -160,9 +161,15 @@ th {
   font-style: italic;
 }
 
+.postamble {
+  font-size: 0.8em;
+  font-style: italic;
+  color: dimgray;
+}
+
 .tag {
-    font-family: $monospace;
-    font-size: 0.7em;
+    font-family: monospace;
+    font-size: 0.6em;
     font-weight: normal;
 }
 
@@ -177,6 +184,7 @@ th {
     background-color: #eee;
     line-height: 1;
 }
+
 
 /* Display toc in a right sidebar on wide screens */
 /* Taken from https://archive.casouri.cat/note/2018/blog-in-org-mode-revisited/index.html */
