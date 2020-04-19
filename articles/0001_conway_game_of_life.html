@@ -73,6 +73,11 @@ for the JavaScript code in this tag.
 <li><a href="#org8a979f1">Implementation in python</a></li>
 <li><a href="#org6cbb351">Regenerate the xkcd drawing</a></li>
 <li><a href="#orgb6f1bf5">Make a GIF from a photo</a></li>
+<li><a href="#orga963ba5">Further things to explore</a>
+<ul>
+<li><a href="#org1b8835b">Refine image conversion algorithm to black-and-white</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -105,6 +110,12 @@ Thu 16 April 2020<br>
     </a>
   </div>
 </div>
+
+<p>
+For a whole generation of young computer enthusiasts coming of age at the beginning of the 1980s, coding Conway's game of life on a home computer and watch the patterns evolving and seeming to acquire a life of their own has been an unforgettable experience. How such simple rules could produce such rich and complex results was simply mind-boggling.<br>
+So, to honor the memory of the great man, let's delve once again into this fascinating world.<br>
+</p>
+
 <div id="outline-container-orga2147f9" class="outline-2">
 <h2 id="orga2147f9">The Rules of the Game</h2>
 <div class="outline-text-2" id="text-orga2147f9">
@@ -144,6 +155,10 @@ The initial pattern constitutes the seed of the system. The first generation is 
 <div class="outline-text-2" id="text-org8a979f1">
 <p>
 OK, let's see if we can implement the game simply. We'll be using <a href="https://numpy.org/">NumPy</a>, the standard scientific package for python, as it make manipulating arrays fast and easy.<br>
+The best way to follow this article is to type in the code in a REPL like <a href="https://jupyter.org/">Jupyter notebook</a> so that you can play around.<br>
+</p>
+
+<p>
 The grid is simply a 2-d numpy array of booleans (<code>False</code> if cell is dead, <code>True</code> if cell is alive).<br>
 </p>
 <div class="org-src-container">
@@ -463,11 +478,30 @@ make_gif_from_grid(grid,gfn)
 </pre>
 </div>
 
+<p>
+Et voilà!<br>
+</p>
+
 
 <figure>
-<a href="../images/conway.gif"><img src="images/conway.gif" alt="conway.gif"></a><br>
+<img src="../images/conway.gif" alt="conway.gif"><br>
 
 </figure>
+</div>
+</div>
+
+<div id="outline-container-orga963ba5" class="outline-2">
+<h2 id="orga963ba5">Further things to explore</h2>
+<div class="outline-text-2" id="text-orga963ba5">
+</div>
+<div id="outline-container-org1b8835b" class="outline-3">
+<h3 id="org1b8835b">Refine image conversion algorithm to black-and-white</h3>
+<div class="outline-text-3" id="text-org1b8835b">
+<p>
+One disappointing thing with the photo is that the features vanish almost instantly because of the density of the dark parts of the image (remember the algorithm, more than 3 is overcrowding!).<br>
+It would be interesting to adjust at a pixel level how the conversion is done so that we can manually create islands of stability in the darker parts, slowing down the vanishing.<br>
+</p>
+</div>
 </div>
 </div>
 </div>
