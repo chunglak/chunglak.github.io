@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Sun 19 April 2020 -->
+<!-- Mon 20 April 2020 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fun with Conway's game of life</title>
@@ -199,11 +199,11 @@ grid
 </div>
 
 <pre class="example">
-array([[ True, False, False,  True,  True, False],
-       [False,  True,  True,  True, False,  True],
-       [ True,  True, False, False,  True,  True],
-       [False,  True,  True, False, False, False],
-       [False,  True, False, False,  True, False]])
+array([[False, False, False,  True, False,  True],
+       [False, False, False,  True, False,  True],
+       [ True, False,  True,  True, False,  True],
+       [ True,  True, False,  True, False, False],
+       [ True,  True,  True,  True, False, False]])
 </pre>
 
 
@@ -219,11 +219,11 @@ print(display_grid(grid))
 </div>
 
 <pre class="example">
-□■□■□■
-■■□■□■
-□□■□■□
-■□■■□□
+□□□■□■
+□□□■□■
+■□■■□■
 ■■□■□□
+■■■■□□
 </pre>
 
 
@@ -263,11 +263,11 @@ print(display_grid(grid))
 </div>
 
 <pre class="example">
-□□□□■□
-□□□□■□
-□□□□■□
-□■■■□□
-□■■■□□
+□□□□□□
+□□□■□■
+■□□■□□
+□□□□□□
+■□□■□□
 </pre>
 </div>
 </div>
@@ -336,8 +336,6 @@ print(display_grid(grid))
 </div>
 
 <pre class="example">
-□□□□□□□□□□□□□□■■□
-□□□□□□□□□□□□□□■■□
 □□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□
@@ -345,13 +343,15 @@ print(display_grid(grid))
 □□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□
+□□□□□□□□■□□□□□□□□
+□□□□□□□■□■□□□□□□□
+□□□□□□■■□■■□□□□□□
+□□□□□□□■□■□□□□□□□
+□□□□□□■□□□□□□□□□□
+□□□□□□■□□□□□□□□□□
+□□□□□□■□□□■□□□□□□
+□□□□□□□□■□■□□□□□□
+□□□□□□□■□■■□□□□□□
 □□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□
@@ -399,7 +399,7 @@ im
 
 
 <figure>
-<img src="./.ob-jupyter/1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png" alt="1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png"><br>
+<img src="./ob-jupyter/1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png" alt="1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png"><br>
 
 </figure>
 
@@ -431,13 +431,13 @@ To accomodate larger size, let's rewrite our <code>display_grid</code> function 
     return im
 
 grid=make_grid_from_image(fn,250)
-image_from_grid(grid)
+display_image_from_grid(grid)
 </pre>
 </div>
 
 
 <figure>
-<img src="./.ob-jupyter/1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png" alt="1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png"><br>
+<img src="./ob-jupyter/1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png" alt="1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png"><br>
 
 </figure>
 
@@ -446,13 +446,13 @@ We can now evolve the image just like before<br>
 </p>
 <div class="org-src-container">
 <pre class="src src-python">grid=calc_grid(grid)
-image_from_grid(grid
+display_image_from_grid(grid)
 </pre>
 </div>
 
 
 <figure>
-<img src="./.ob-jupyter/075235d334f66a29d5b297012df8d6fb8a1ad2f6.png" alt="075235d334f66a29d5b297012df8d6fb8a1ad2f6.png"><br>
+<img src="./ob-jupyter/911fd06e85f53702f001f63ec3206f101705cd41.png" alt="911fd06e85f53702f001f63ec3206f101705cd41.png"><br>
 
 </figure>
 
@@ -518,7 +518,7 @@ Shouldn't be too difficult to do, plus with all the processing done on the clien
 <br/><br/><br/>
 <div class='postamble'>
 <span><a href='/index.html'>Considérations inactuelles</a> is the blog of <a href='mailto:chunglak@gmail.com'>Alfred Leung - 梁宗力</a></span>
-<br> <span>Updated on Sun 19 April 2020</span> 
+<br> <span>Updated on Mon 20 April 2020</span> 
 </div>
 </div>
 </body>
