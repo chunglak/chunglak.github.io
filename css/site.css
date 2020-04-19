@@ -146,6 +146,13 @@ img {
 .org-src-container > pre.src-javascript:before {
   content: "Javascript"; }
 
+.example {
+  border: 1px solid #ccc;
+  margin: 1em auto;
+  padding: 0.1em 0.5em;
+  background-color: aliceblue;
+  overflow: auto; }
+
 /* Tables */
 table {
   text-align: justify;

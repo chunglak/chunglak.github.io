@@ -70,7 +70,9 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orga2147f9">The Rules of the Game</a></li>
-<li><a href="#orgd7d94d7">The Code</a></li>
+<li><a href="#org8a979f1">Implementation in python</a></li>
+<li><a href="#org6cbb351">Regenerate the xkcd drawing</a></li>
+<li><a href="#orgb6f1bf5">Make a GIF from a photo</a></li>
 </ul>
 </div>
 </nav>
@@ -137,78 +139,335 @@ The initial pattern constitutes the seed of the system. The first generation is 
 </div>
 </div>
 
-<div id="outline-container-orgd7d94d7" class="outline-2">
-<h2 id="orgd7d94d7">The Code</h2>
-<div class="outline-text-2" id="text-orgd7d94d7">
+<div id="outline-container-org8a979f1" class="outline-2">
+<h2 id="org8a979f1">Implementation in python</h2>
+<div class="outline-text-2" id="text-org8a979f1">
+<p>
+OK, let's see if we can implement the game simply. We'll be using <a href="https://numpy.org/">NumPy</a>, the standard scientific package for python, as it make manipulating arrays fast and easy.<br>
+The grid is simply a 2-d numpy array of booleans (<code>False</code> if cell is dead, <code>True</code> if cell is alive).<br>
+</p>
 <div class="org-src-container">
-<pre class="src src-python">class Grid:
-    def __init__(self, X, Y=None):
-        self.X = X
-        self.Y = Y if Y else X
-        self.grid = [False] * (self.X * self.Y)
+<pre class="src src-python">import numpy as np
 
-    def __str__(self):
-        return "\n".join(
-            [
-                "".join(["X" if self.get(x, y) else " " for x in range(self.X)])
-                for y in range(self.Y)
-            ]
-        )
+def make_grid(Y,X):
+    return np.zeros((Y,X),dtype=bool)
 
-    def image(self):
-        from PIL import Image
-        im=Image.new(mode='1',size=(self.X,self.Y))
-        im.putdata([0 if c else 1 for c in self.grid])
-        return im
-
-    def p(self, x, y):
-        return x + y * self.X
-
-    def set(self, x, y, v=1):
-        self.grid[self.p(x, y)] = v
-
-    def get(self, x, y):
-        if x &lt; 0 or x &gt;= self.X or y &lt; 0 or y &gt;= self.Y:
-            return 0
-        else:
-            try:
-                return self.grid[self.p(x, y)]
-            except:
-                print('x=%s y=%s p=%s' % (x,y,self.p(x,y)))
-                raise
-
-
-def set_random_initial_conditions(grid, n):
-    import random
-
-    ps = random.sample(range(len(grid.grid)), n)
-    for p in ps:
-        grid.grid[p] = True
-
-
-def nb_neighbors(grid, x, y):
-    nn = 0
-    for xs in (-1, 0, 1):
-        for ys in (-1, 0, 1):
-            if xs == 0 and ys == 0:
-                continue
-            nn += 1 if grid.get(x + xs, y + ys) else 0
-    return nn
-
-
-def step(grid):
-    new_grid = Grid(grid.X, grid.Y)
-    for x in range(grid.X):
-        for y in range(grid.Y):
-            nn = nb_neighbors(grid, x, y)
-            v = grid.get(x, y)
-            if v:
-                new_grid.set(x, y, 2 &lt;= nn &lt;= 3)
-            elif nn == 3:
-                new_grid.set(x, y, True)
-    return new_grid
+grid=make_grid(5,6)
+grid
 </pre>
 </div>
+
+<pre class="example">
+array([[False, False, False, False, False, False],
+       [False, False, False, False, False, False],
+       [False, False, False, False, False, False],
+       [False, False, False, False, False, False],
+       [False, False, False, False, False, False]])
+</pre>
+
+
+<p>
+To spice things up a bit, a function to set cells on randomly<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def set_on_random_cells(grid, n):
+    import random
+
+    _grid = grid.reshape((-1,))
+    _grid[np.random.choice(_grid.size, n, replace=False)] = True
+    return _grid.reshape(grid.shape)
+
+grid = set_on_random_cells(grid, 15)
+grid
+</pre>
+</div>
+
+<pre class="example">
+array([[ True, False, False,  True,  True, False],
+       [False,  True,  True,  True, False,  True],
+       [ True,  True, False, False,  True,  True],
+       [False,  True,  True, False, False, False],
+       [False,  True, False, False,  True, False]])
+</pre>
+
+
+<p>
+Mmm&#x2026; the display is not very pretty. Can we do better?<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def display_grid(grid):
+    return '\n'.join(''.join('■' if c else '□' for c in row) for row in grid)
+
+print(display_grid(grid))
+</pre>
+</div>
+
+<pre class="example">
+□■□■□■
+■■□■□■
+□□■□■□
+■□■■□□
+■■□■□□
+</pre>
+
+
+<p>
+That's better, but we'll improve on that later on.<br>
+On to the main function, which computes the new grid from the old grid. It's not going to win any prize for cleverness, but it's a straightforward implementation of the algorithm and it's easy to see it works well.<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def calc_grid(grid):
+    def nb_neighbors(y, x):
+        nn = 0
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                if dx == dy == 0:
+                    continue
+                xp, yp = x + dx, y + dy
+                if xp &gt;= 0 and yp &gt;= 0 and xp &lt; X and yp &lt; Y and grid[yp, xp]:
+                    nn += 1
+        return nn
+
+    Y, X = grid.shape
+    new_grid = make_grid(Y, X)
+    for y in range(Y):
+        for x in range(X):
+            nbn = nb_neighbors(y, x)
+            v = grid[y, x]
+            if v:
+                new_grid[y, x] = 2 &lt;= nbn &lt;= 3
+            elif nbn == 3:
+                new_grid[y, x] = True
+    return new_grid
+
+
+grid = calc_grid(grid)
+print(display_grid(grid))
+</pre>
+</div>
+
+<pre class="example">
+□□□□■□
+□□□□■□
+□□□□■□
+□■■■□□
+□■■■□□
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6cbb351" class="outline-2">
+<h2 id="org6cbb351">Regenerate the xkcd drawing</h2>
+<div class="outline-text-2" id="text-org6cbb351">
+<p>
+For fun, how about replicating the xkcd animation at the top of the page? We copy the initial cells into an array that we embed inside a bigger grid.<br>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">conway = np.array(
+    [
+        [0, 0, 1, 1, 1, 0, 0],
+        [0, 0, 1, 0, 1, 0, 0],
+        [0, 0, 1, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0],
+        [1, 0, 1, 1, 1, 0, 0],
+        [0, 1, 0, 1, 0, 1, 0],
+        [0, 0, 0, 1, 0, 0, 1],
+        [0, 0, 1, 0, 1, 0, 0],
+        [0, 0, 1, 0, 1, 0, 0],
+    ]
+)
+
+grid = make_grid(20, 17)
+x0, y0 = 5, 8
+grid[y0 : y0 + conway.shape[0], x0 : x0 + conway.shape[1]] = conway
+print(display_grid(grid))
+</pre>
+</div>
+
+<pre class="example">
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□■■■□□□□□□□
+□□□□□□□■□■□□□□□□□
+□□□□□□□■□■□□□□□□□
+□□□□□□□□■□□□□□□□□
+□□□□□■□■■■□□□□□□□
+□□□□□□■□■□■□□□□□□
+□□□□□□□□■□□■□□□□□
+□□□□□□□■□■□□□□□□□
+□□□□□□□■□■□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+</pre>
+
+
+<p>
+Not too bad, eh? Now, with the snippet below, we can evolve the grid.<br>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">grid = calc_grid(grid)
+print(display_grid(grid))
+</pre>
+</div>
+
+<pre class="example">
+□□□□□□□□□□□□□□■■□
+□□□□□□□□□□□□□□■■□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□
+</pre>
+
+
+<p>
+That's the grid's final position. It gets stuck at the edge of the frame it the 4-cell square is stable. Guess xkcd clipped the frame so that the pattern diseappears&#x2026; Oh well.<br>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb6f1bf5" class="outline-2">
+<h2 id="orgb6f1bf5">Make a GIF from a photo</h2>
+<div class="outline-text-2" id="text-orgb6f1bf5">
+<p>
+Now onto something more exciting: how about we digitize a photo into a grid and play the game of life with that initial pattern?<br>
+</p>
+
+<p>
+Let's find a <a href="https://en.wikipedia.org/wiki/File:John_H_Conway_2005_(cropped).jpg">photo</a> to use<br>
+</p>
+
+<figure>
+<img src="../images/2020-04-19_22-28-14_720px-John_H_Conway_2005_(cropped).jpg" alt="John Conway" width="50%"><br>
+
+</figure>
+
+<p>
+We can easily load, resize and convert it with the <a href="https://pillow.readthedocs.io/en/stable/">Python Imaging Library</a>.<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from PIL import Image
+
+fn='../images/2020-04-19_22-28-14_720px-John_H_Conway_2005_(cropped).jpg'
+im=Image.open(fn)
+w,h=im.size
+W=250
+im=im.resize((W,int(W*h/w)))
+im=im.convert('1')
+im
+</pre>
+</div>
+
+
+<figure>
+<img src="./.ob-jupyter/1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png" alt="1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png"><br>
+
+</figure>
+
+<p>
+Let's create a function to create a grid from a photo<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def make_grid_from_image(fn, width=None):
+    im = Image.open(fn)
+    if width:
+        w, h = im.size
+        im = im.resize((width, int(width / w * h)))
+    im = im.convert("1")
+    w,h=im.size
+    flat_grid=np.logical_not(np.array(im.getdata()))
+    grid=flat_grid.reshape((h,w))
+    return grid
+</pre>
+</div>
+
+<p>
+To accomodate larger size, let's rewrite our <code>display_grid</code> function to produce an image instead of text<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def display_image_from_grid(grid):
+    Y,X=grid.shape
+    im=Image.new(mode='1',size=(X,Y))
+    im.putdata(np.logical_not(grid.reshape((-1,))))
+    return im
+
+grid=make_grid_from_image(fn,250)
+image_from_grid(grid)
+</pre>
+</div>
+
+
+<figure>
+<img src="./.ob-jupyter/1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png" alt="1cac41bc0f0ca07671ddd3bb830ddba8370164a7.png"><br>
+
+</figure>
+
+<p>
+We can now evolve the image just like before<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">grid=calc_grid(grid)
+image_from_grid(grid
+</pre>
+</div>
+
+
+<figure>
+<img src="./.ob-jupyter/075235d334f66a29d5b297012df8d6fb8a1ad2f6.png" alt="075235d334f66a29d5b297012df8d6fb8a1ad2f6.png"><br>
+
+</figure>
+
+<p>
+And now, saving the animation as a GIF file!<br>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def make_gif_from_grid(grid, fn, nb_frames=100, duration=250):
+    im0 = display_image_from_grid(grid)
+    ims = []
+    for _ in range(nb_frames):
+        grid = calc_grid(grid)
+        # Need to convert image to "p" otherwise PIL complains about palette missing
+        ims.append(display_image_from_grid(grid).convert("P"))
+
+    im0.convert("P").save(
+        fn, save_all=True, append_images=ims, duration=duration, loop=0
+    )
+
+import os.path
+gfn=os.path.join(os.path.dirname(fn),'conway.gif')
+grid=make_grid_from_image(fn,250)
+make_gif_from_grid(grid,gfn)
+</pre>
+</div>
+
+
+<figure>
+<a href="../images/conway.gif"><img src="images/conway.gif" alt="conway.gif"></a><br>
+
+</figure>
 </div>
 </div>
 </div>
