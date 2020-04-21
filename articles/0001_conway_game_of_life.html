@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Tue 21 April 2020 -->
+<!-- Wed 22 April 2020 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fun with Conway's game of life</title>
@@ -70,17 +70,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org70312cb">The Rules of the Game</a></li>
-<li><a href="#org6dbc59f">Implementation in python</a></li>
-<li><a href="#org02e01cd">Regenerate the xkcd drawing</a></li>
-<li><a href="#orgd475fff">Make a GIF from a photo</a></li>
-<li><a href="#orgefff6f7">Further things to explore</a></li>
+<li><a href="#org09c4b59">The Rules of the Game</a></li>
+<li><a href="#org67e4391">Implementation in python</a></li>
+<li><a href="#orgb42fa28">Regenerate the xkcd drawing</a></li>
+<li><a href="#org428ed74">Make a GIF from a photo</a></li>
+<li><a href="#org7201686">Further things to explore</a></li>
 </ul>
 </div>
 </nav>
 <div class="page-date">
 <p>
-Thu 16 April 2020<br>
+Sun 19 April 2020<br>
 </p>
 
 </div>
@@ -113,9 +113,9 @@ For a whole generation of young computer enthusiasts coming of age at the beginn
 So, to honor the memory of the great man, let's delve once again into this fascinating world.<br>
 </p>
 
-<div id="outline-container-org70312cb" class="outline-2">
-<h2 id="org70312cb">The Rules of the Game</h2>
-<div class="outline-text-2" id="text-org70312cb">
+<div id="outline-container-org09c4b59" class="outline-2">
+<h2 id="org09c4b59">The Rules of the Game</h2>
+<div class="outline-text-2" id="text-org09c4b59">
 <p>
 From the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia page</a>,<br>
 </p>
@@ -147,9 +147,9 @@ The initial pattern constitutes the seed of the system. The first generation is 
 </div>
 </div>
 
-<div id="outline-container-org6dbc59f" class="outline-2">
-<h2 id="org6dbc59f">Implementation in python</h2>
-<div class="outline-text-2" id="text-org6dbc59f">
+<div id="outline-container-org67e4391" class="outline-2">
+<h2 id="org67e4391">Implementation in python</h2>
+<div class="outline-text-2" id="text-org67e4391">
 <p>
 OK, let's see if we can implement the game simply. We'll be using <a href="https://numpy.org/">NumPy</a>, the standard scientific package for python, as it make manipulating arrays fast and easy.<br>
 The best way to follow this article is to type in the code in a REPL like <a href="https://jupyter.org/">Jupyter notebook</a> so that you can play around.<br>
@@ -268,9 +268,9 @@ print(display_grid(grid))
 </div>
 </div>
 
-<div id="outline-container-org02e01cd" class="outline-2">
-<h2 id="org02e01cd">Regenerate the xkcd drawing</h2>
-<div class="outline-text-2" id="text-org02e01cd">
+<div id="outline-container-orgb42fa28" class="outline-2">
+<h2 id="orgb42fa28">Regenerate the xkcd drawing</h2>
+<div class="outline-text-2" id="text-orgb42fa28">
 <p>
 For fun, how about replicating the xkcd animation at the top of the page? We copy the initial cells into an array that we embed inside a bigger grid.<br>
 </p>
@@ -361,9 +361,9 @@ That's the grid's final position. It gets stuck at the edge of the frame it the 
 </div>
 </div>
 
-<div id="outline-container-orgd475fff" class="outline-2">
-<h2 id="orgd475fff">Make a GIF from a photo</h2>
-<div class="outline-text-2" id="text-orgd475fff">
+<div id="outline-container-org428ed74" class="outline-2">
+<h2 id="org428ed74">Make a GIF from a photo</h2>
+<div class="outline-text-2" id="text-org428ed74">
 <p>
 Now onto something more exciting: how about we digitize a photo into a grid and play the game of life with that initial pattern?<br>
 </p>
@@ -487,22 +487,22 @@ Et voilà!<br>
 </div>
 </div>
 
-<div id="outline-container-orgefff6f7" class="outline-2">
-<h2 id="orgefff6f7">Further things to explore</h2>
-<div class="outline-text-2" id="text-orgefff6f7">
+<div id="outline-container-org7201686" class="outline-2">
+<h2 id="org7201686">Further things to explore</h2>
+<div class="outline-text-2" id="text-org7201686">
 </div>
-<div id="outline-container-orgfa25a96" class="outline-3">
-<h3 id="orgfa25a96">Refine image conversion algorithm to black-and-white</h3>
-<div class="outline-text-3" id="text-orgfa25a96">
+<div id="outline-container-org2748360" class="outline-3">
+<h3 id="org2748360">Refine image conversion algorithm to black-and-white</h3>
+<div class="outline-text-3" id="text-org2748360">
 <p>
 One disappointing thing with the photo is that the features vanish almost instantly because of the density of the dark parts of the image (remember the algorithm, more than 3 is overcrowding!).<br>
 It would be interesting to adjust at a pixel level how the conversion is done so that we can manually create islands of stability in the darker parts, slowing down the vanishing.<br>
 </p>
 </div>
 </div>
-<div id="outline-container-orge97fef7" class="outline-3">
-<h3 id="orge97fef7">Make a javascript application to allow users to process an image of their choice into a GIF</h3>
-<div class="outline-text-3" id="text-orge97fef7">
+<div id="outline-container-orgc7387f9" class="outline-3">
+<h3 id="orgc7387f9">Make a javascript application to allow users to process an image of their choice into a GIF</h3>
+<div class="outline-text-3" id="text-orgc7387f9">
 <p>
 Shouldn't be too difficult to do, plus with all the processing done on the client side, no issue of privacy or server muscle needed.<br>
 </p>
@@ -514,7 +514,7 @@ Shouldn't be too difficult to do, plus with all the processing done on the clien
 <br/><br/><br/>
 <div class='postamble'>
 <span><a href='/index.html'>Considérations inactuelles</a> is the blog of <a href='mailto:chunglak@gmail.com'>Alfred Leung - 梁宗力</a></span>
-<br> <span>Updated on Mon 20 April 2020</span> 
+<br> <span>Updated on Tue 21 April 2020</span> 
 </div>
 </div>
 </body>

@@ -167,7 +167,17 @@ th {
 /* Classes */
 .title {
   text-align: center;
-  font-weight: 700; }
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 0.5; }
+
+.subtitle {
+  text-align: center;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 1em;
+  line-height: 0.5;
+  color: darkgray; }
 
 .abstract {
   margin: auto;
