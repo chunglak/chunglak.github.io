@@ -16,14 +16,5 @@
       <description>This is a testing placeholder</description>
     </item>
     
-    <item>
-      <title>Second post</title>
-      <link>https://chunglak.com/posts/second_post/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://chunglak.com/posts/second_post/</guid>
-      <description>ctory1. By default, the Markdown files reside in a hierarchy under the content/ directory in the site root directory (ref). If you try to export without setting this property, you will get this</description>
-    </item>
-    
   </channel>
 </rss>
