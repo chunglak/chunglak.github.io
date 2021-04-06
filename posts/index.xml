@@ -6,14 +6,14 @@
     <description>Recent content in Posts on Considérations inactuelles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0900</lastBuildDate><atom:link href="https://chunglak.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Apr 2021 23:03:00 +0900</lastBuildDate><atom:link href="https://chunglak.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First post</title>
       <link>https://chunglak.com/posts/first_post/</link>
-      <pubDate>Mon, 05 Apr 2021 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 06 Apr 2021 23:03:00 +0900</pubDate>
       
       <guid>https://chunglak.com/posts/first_post/</guid>
-      <description>f point is in a valid Hugo post subtree, export that subtree to a Hugo post in Markdown.</description>
+      <description>This is a testing placeholder</description>
     </item>
     
     <item>
