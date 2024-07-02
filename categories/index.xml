@@ -4,7 +4,8 @@
     <title>Categories on Unfashionable Perspectives</title>
     <link>https://chunglak.com/categories/</link>
     <description>Recent content in Categories on Unfashionable Perspectives</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://chunglak.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://chunglak.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

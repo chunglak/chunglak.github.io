@@ -4,7 +4,8 @@
     <title>Blog posts on Unfashionable Perspectives</title>
     <link>https://chunglak.com/posts/</link>
     <description>Recent content in Blog posts on Unfashionable Perspectives</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://chunglak.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://chunglak.com/posts/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

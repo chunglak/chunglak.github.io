@@ -4,19 +4,15 @@
     <title>Home on Unfashionable Perspectives</title>
     <link>https://chunglak.com/</link>
     <description>Recent content in Home on Unfashionable Perspectives</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://chunglak.com/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://chunglak.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About me</title>
-      <link>https://chunglak.com/about/</link>
+      <title>Contact</title>
+      <link>https://chunglak.com/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://chunglak.com/about/</guid>
-      <description>Greetings gentle visitor!
-I&amp;rsquo;m Alfred Leung (梁宗力) aka chunglak, and this is my personal website, where I put things that interest, intrigue or amuse me.
-Hopefully you&amp;rsquo;ll find here things that interest, intrigue or amuse you too…
-I&amp;rsquo;d love to hear from you! You can reach me at unfashionablep@gmail.com.</description>
+      <guid>https://chunglak.com/contact/</guid>
+      <description>I can be contacted at unfashionablep@gmail.com.</description>
     </item>
-    
   </channel>
 </rss>
